@@ -62,11 +62,7 @@ with open('ulasan_tiket_com.csv','r') as data :
         # "All edits that are two edits away from `word`."
         return (e2 for e1 in edits1(word) for e2 in edits1(e1))
 
-    # np_kumpulan_kata =  np.array(kumpulan_kata)
-    # print(np_kumpulan_kata[1][1])
-    # for data in kumpulan_kata:
-    #     print(data)
-    # print(kumpulan_kata[1][0])
+
     for index,data in enumerate(kumpulan_kata):
         for idx,dt in enumerate(data):
             # print(correction(dt),end=' ')
