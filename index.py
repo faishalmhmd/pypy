@@ -7,6 +7,8 @@ factory = StemmerFactory()
 stemmer = factory.create_stemmer()
 # array buat nampung kumpulan kata
 kumpulan_kata = []
+row = []
+kumpulan_kata_fix = []
 
 with open('ulasan_tiket_com.csv','r') as data : 
     ulasan = csv.reader(data)
@@ -18,16 +20,14 @@ with open('ulasan_tiket_com.csv','r') as data :
         remove_char = remove_string.replace(';','')
         # ubah ke non-kapital
         lower_case = remove_char.lower()
-        #stemmer     
+        #  stemmer     
         kata = stemmer.stem(lower_case)
         # split jadi perkata
         split_kata = kata.split()
         # tampung kedalam array
         kumpulan_kata.append(split_kata)
 
-    # print(*kumpulan_kata,sep='\n')
-    # print(kumpulan_kata[2][1][0])
-
+    # buat benerin kata
     def words(text): return re.findall(r'\w+', text.lower())
 
     WORDS = Counter(words(open('typo.txt').read()))
@@ -69,5 +69,9 @@ with open('ulasan_tiket_com.csv','r') as data :
     # print(kumpulan_kata[1][0])
     for index,data in enumerate(kumpulan_kata):
         for idx,dt in enumerate(data):
-            print(correction(dt),end=' ')
-        print()                
+            # print(correction(dt),end=' ')
+            row.append(dt)
+        print()      
+        kumpulan_kata_fix.append(row)
+        row = []
+    print(*kumpulan_kata_fix,sep='\n')          
